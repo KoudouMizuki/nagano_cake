@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8 offset-md-2">
+      <div class="top">
+        <div class="top-contant">
+            <div class="top-text-contant">
+              ようこそ、ながのCAKEへ！<br>
+              このサイトは、ケーキ販売のECサイトになります。<br>
+              会員でない方も商品の閲覧はできますが、<br>
+              購入には会員登録が必要になります。<br>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <h2><strong>新着商品</strong></h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <% @items.each do |item| %>
+      <div class="col-3">
+        <%= link_to item_path(item.id) do %>
+          <%= image_tag item.image.variant(resize: '200x300') %>
+        <%end%>
+        <div class="row">
+          <div class="col-12">
+            <%= item.name %><br/>
+            ￥<%= item.price %>
+          </div>
+        </div>
+      </div>
+    <%end%>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="text-right">
+        <%= link_to "全ての商品を見る＞", items_path %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+
+  .top{
+    background-image:url(assets/image/3614924_s.jpg);
+    background-size:cover;
+    height:300px;
+    margin-top:20px;
+    margin-bottom:20px;
+  }
+
+  .top-contant{
+    background-color: rgba( 255, 255, 255, 0.5);
+    width:60%;
+    height:200px;
+    padding:30pxpx;
+  }
+  
+  .top-text-contant{
+    padding:40px 30px;
+  }
+</style>

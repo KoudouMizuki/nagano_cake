@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h4>注文一覧</h4>
+      <table class="table table-bordered">
+        <thead>
+          <th>注文日</th>
+          <th>配送先</th>
+          <th>注文商品</th>
+          <th>支払金額</th>
+          <th>注文詳細</th>
+        </heady>
+        <tbody>
+          <% @orders.each do |order| %>
+            <tr>
+              <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+              <td>
+                〒<%= order.postal_code %><br/>
+                <%= order.address %><br/>
+                <%= order.name %>
+              </td>
+              <td>
+                <% order.order_dateils.each do |order_dateil| %>
+                  <%= order_dateil.item.name %>
+                <%end%>
+              </td>
+              <td><%= order.peyment_amount %></td>
+              <td><%= link_to "表示する", order_path(order.id),class: "btn btn-primary btn-sm" %></td>
+            </tr>
+          <%end%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

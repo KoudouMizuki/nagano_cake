@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8 offset-md-2 mt-4">
+      <h4>注文一覧</h4>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>購入日時</th>
+              <th>購入者</th>
+              <th>注文個数</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @orders.each do |order| %>
+              <tr>
+                <td>
+                  <%= link_to admin_order_path(order.id) do %>
+                    <%= order.created_at.strftime('%Y/%m/%d/%T') %>
+                  <%end%>
+                </td>
+                <td><%= order.name %></td>
+                <td>
+                  <% total = 0 %>
+                  <% order.order_dateils.each do |order_dateil| %>
+                    <% total += order_dateil.amount %>
+                  <%end%>
+                  <%= total %>
+                </td>
+              </tr>
+            <%end%>
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>

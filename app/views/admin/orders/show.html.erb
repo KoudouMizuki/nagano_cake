@@ -1,0 +1,67 @@
+<div class="container">
+　<h4>注文履歴詳細</h4>
+  <div class="row">
+    <div class ="col-10 mb-5">
+      <div class="row">
+        <div class="col-md-2">購入者</div>
+        <%= @order.name %>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2">注文日</div>
+        <%= @order.created_at.strftime('%Y/%m/%d') %>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2">配送先</div>
+        〒<%= @order.postal_code %>　<%= @order.address %><br/><%= @order.name %>
+      </div>
+      <div class="row">
+        <div class="col-md-2">支払方法</div>
+        <%= @order.peyment_type_i18n %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-9">
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th>商品名</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+          </tr>
+        </thead>
+        <tbody class="table-borderless">
+          <% @order.order_dateils.each do |order_dateil| %>
+            <tr>
+              <td><%= order_dateil.item.name %></td>
+              <td><%= order_dateil.item.with_tax_price %></td>
+              <td><%= order_dateil.amount %></td>
+              <td><%= order_dateil.item.with_tax_price*order_dateil.amount %></td>
+            </tr>
+          <%end%>  
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="col-3">
+      <table class="table table-bordered">
+        <tr>
+          <th>商品合計</th>
+          <td><%= @order.peyment_amount %></td>
+        </tr>
+        <tr>
+          <th>送料</th>
+          <td><%= @order.postage %></td>
+        </tr>
+        <tr>
+          <th>請求金額合計</th>
+          <td><%= @order.peyment_amount + @order.postage %> </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <h4>会員詳細</h4>
+      <div class="row">
+        <div class="col-md-4">会員ID</div>
+        <%= @customer.id %>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-4">氏名</div>
+        <%= @customer.first_name %>　<%= @customer.last_name %>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-4">フリガナ</div>
+        <%= @customer.first_name_kana %>　<%= @customer.last_name_kana %>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-4">郵便番号</div>
+        <%= @customer.postal_code %>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-4">住所</div>
+        <%= @customer.address %>
+      </div>  
+      
+      <div class="row">
+        <div class="col-md-4">電話番号</div>
+        <%= @customer.telephone_number %>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-4">メールアドレス</div>
+        <%= @customer.email %>
+      </div>
+      <div class="row">
+        <div class="col-md-4">会員ステータス</div>
+          <% if @customer.is_deleted == false %>
+             有効
+            <%else%>
+             退会
+            <%end%>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-4">
+          <%= link_to "編集する", edit_admin_customer_path(@customer.id), class: "btn btn-success btn-sm" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

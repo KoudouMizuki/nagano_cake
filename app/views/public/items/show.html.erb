@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row center_-block">
+    <div class="col-5 mt-4 ">
+      <%= image_tag @item.image.variant(resize: '300x400') %>
+      <h4>
+        <%= @item.name %></h4>
+        <%= @item.introduction %><br/>
+        ￥<%= @item.price %>
+      </h4>
+      <%= form_with model: @cart_item, url: cart_items_path do |f| %>
+      <%= f.select :amount, *[1..10], include_blank: "個数選択" %>
+      <%= f.hidden_field :item_id, :value => @item.id %>
+      <%= f.submit 'カートに入れる', class: "btn btn-success btn-sm" %>
+      <%end%>
+    </div>
+</div>
+
+
+<style>
+  p{
+    color:red;
+  }
+</style>
